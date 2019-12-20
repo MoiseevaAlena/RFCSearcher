@@ -21,9 +21,9 @@
                 <div class="form-group">
                     <input type="hidden" name="action" value="search">
                 </div>
-                <dif class="form-group">
+                <div class="form-group">
                     <input type="text" id="name" name="name" placeholder="Введите поисковый запрос" class="form-control" required>
-                </dif>
+                </div>
 
                 <button type="submit" class="btn btn-primary mt-3">Найти</button>
             </form>

@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 public class DownloadServlet extends HttpServlet {
     FileService fileService;
     @Override
-    public void init() throws ServletException {
+    public void init() {
         fileService = new FileService();
     }
 

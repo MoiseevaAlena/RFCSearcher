@@ -37,10 +37,7 @@ public class QueryServiceThreadPoolImpl implements QueryService {
     }
 
     @Override
-    public void search(String query) throws IOException  {
-        System.out.println("ЗАШЛИ В ПОИСК");
-
-
+    public void search(String query) {
         String url = System.getenv("UPLOAD_PATH");
         String urlResult = System.getenv("RESULTS");
         String id = UUID.randomUUID().toString();
@@ -50,10 +47,11 @@ public class QueryServiceThreadPoolImpl implements QueryService {
             e.printStackTrace();
         }
         executor.execute(() -> {
-            boolean t = true;
+            boolean t;
                     Path resultPath = Paths.get(urlResult+id+".txt");
                     try {
-                        Path resultFile = Files.createFile(resultPath);
+                        //Path resultFile =
+                        Files.createFile(resultPath);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -69,8 +67,6 @@ public class QueryServiceThreadPoolImpl implements QueryService {
                                 .collect(Collectors.toList());
 
                         for (Path pathFile : pathFiles) {
-                            System.out.println(pathFile.getFileName());
-
                             if (Files.exists(pathFile)) {
 
                                 try {

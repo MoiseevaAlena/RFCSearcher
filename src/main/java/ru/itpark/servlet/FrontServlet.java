@@ -57,7 +57,7 @@ public class FrontServlet extends HttpServlet {
     }
 
     @Override
-    public void init() throws ServletException {
+    public void init() {
         try {
             InitialContext context = new InitialContext();
             final DataSource dataSource = (DataSource) context.lookup("java:/comp/env/jdbc/db");

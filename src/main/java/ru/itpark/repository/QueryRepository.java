@@ -8,6 +8,6 @@ import java.util.List;
 public interface QueryRepository {
     void init();
     List<QueryModel> getAll();
-    public String create(String id, String searchLine, String status) throws SQLException;
-    public void updateStatus(String id,String status) throws SQLException;
+    String create(String id, String searchLine, String status) throws SQLException;
+    void updateStatus(String id,String status) throws SQLException;
 }

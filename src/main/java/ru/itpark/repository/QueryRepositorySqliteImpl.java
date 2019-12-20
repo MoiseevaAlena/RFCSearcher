@@ -20,7 +20,7 @@ public class QueryRepositorySqliteImpl implements QueryRepository {
     public void init() {
         try (
                 Connection connection = dataSource.getConnection();
-                Statement statement = connection.createStatement();
+                Statement statement = connection.createStatement()
 
         ) {
            statement.execute("CREATE TABLE IF NOT EXISTS  queries (id TEXT PRIMARY KEY, query TEXT NOT NULL, status TEXT NOT NULL)");
@@ -34,7 +34,7 @@ public class QueryRepositorySqliteImpl implements QueryRepository {
         try (
                 Connection connection = dataSource.getConnection();
                 Statement statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery("SELECT id, query, status FROM queries");
+                ResultSet resultSet = statement.executeQuery("SELECT id, query, status FROM queries")
         ) {
             var list = new ArrayList<QueryModel>();
             while (resultSet.next()) {
@@ -50,11 +50,11 @@ public class QueryRepositorySqliteImpl implements QueryRepository {
         return Collections.emptyList();
     }
 
-    public String create(String id, String query, String status) throws SQLException {
+    public String create(String id, String query, String status) {
         try (
 
                 Connection connection = dataSource.getConnection();
-                var statement = connection.prepareStatement("INSERT INTO queries (id, query,status) VALUES (?, ?, ?)");
+                var statement = connection.prepareStatement("INSERT INTO queries (id, query,status) VALUES (?, ?, ?)")
         ) {
             statement.setString(1, id);
             statement.setString(2, query);
@@ -67,11 +67,11 @@ public class QueryRepositorySqliteImpl implements QueryRepository {
         return id;
     }
 
-    public void updateStatus(String id, String status) throws SQLException {
+    public void updateStatus(String id, String status) {
         try (
 
                 Connection connection = dataSource.getConnection();
-                var statement = connection.prepareStatement("UPDATE queries SET status = ? where id = ?");
+                var statement = connection.prepareStatement("UPDATE queries SET status = ? where id = ?")
         ) {
             statement.setString(1, status);
             statement.setString(2, id);
