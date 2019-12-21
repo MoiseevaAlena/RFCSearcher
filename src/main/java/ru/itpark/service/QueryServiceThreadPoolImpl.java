@@ -48,7 +48,7 @@ public class QueryServiceThreadPoolImpl implements QueryService {
         }
         executor.execute(() -> {
             boolean t;
-                    Path resultPath = Paths.get(urlResult+id+".txt");
+                    Path resultPath = Paths.get(urlResult + "\\"+id+".txt");
                     try {
                         //Path resultFile =
                         Files.createFile(resultPath);
