@@ -39,21 +39,14 @@ public class FrontServlet extends HttpServlet {
         } else {
 
             if (url.startsWith("/search")) {
-
-                List <Path> filesNames = new ArrayList<>();
-                filesNames.clear();
-                List <Path> files = Files.list(uploadPath).collect(Collectors.toList());
-                files.forEach(o -> filesNames.add(o.getFileName()));
-                req.setAttribute("listFile", filesNames);
                 req.getRequestDispatcher("/WEB-INF/search.jsp").forward(req, resp);
-
 
                 if (req.getMethod().equals("POST")) {
                     String action = req.getParameter("action");
                     if (action.equals("search")) {
                         req.setCharacterEncoding("UTF-8");
                         var name = req.getParameter("name");
-                        serviceThread.search(name);
+                        serviceThread.search(resultDirectory,name);
                     } else {
                         Part file = req.getPart("file");
                         fileService.writeFile(file);
@@ -65,6 +58,15 @@ public class FrontServlet extends HttpServlet {
                 List<QueryModel> listSearch = service.getAll();
                 req.setAttribute("listSearch", listSearch);
                 req.getRequestDispatcher("/WEB-INF/results.jsp").forward(req, resp);
+            }
+
+            if (url.startsWith("/files")) {
+                List <Path> filesNames = new ArrayList<>();
+                filesNames.clear();
+                List <Path> files = Files.list(uploadPath).collect(Collectors.toList());
+                files.forEach(o -> filesNames.add(o.getFileName()));
+                req.setAttribute("listFile", filesNames);
+                req.getRequestDispatcher("/WEB-INF/files.jsp").forward(req, resp);
             }
         }
 

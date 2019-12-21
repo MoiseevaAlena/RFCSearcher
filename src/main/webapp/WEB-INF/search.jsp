@@ -39,21 +39,16 @@
 
                 <br>
                     <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Загрузить</button>
-
             </form>
+            <br>
+            <button onclick="location.href='/files'" class="btn btn-primary mt-3">Посмотреть список загруженных файлов</button>
+
 
             <br>
             <br>
             <div align="center">
                 <button onclick="location.href='/results'" class="btn btn-primary mt-3">Перейти на страницу результатов</button>
             </div>
-
-            <h3>Список файлов, по которым осуществляется поиск:</h3>
-            <%for (Path path : (List<Path>) request.getAttribute("listFile")) {%>
-            <p><%=path%>
-            </p>
-            <%}%>
-
 
         </div>
     </div>

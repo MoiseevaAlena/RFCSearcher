@@ -5,6 +5,7 @@ import ru.itpark.model.QueryModel;
 import ru.itpark.repository.QueryRepository;
 
 import java.io.*;
+import java.nio.file.Path;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.UUID;
@@ -28,7 +29,7 @@ public class QueryServiceSimpleImpl implements QueryService {
 
 
     @Override
-    public void search(String query) throws IOException {
+    public void search(Path path, String query) throws IOException {
         String url =  System.getenv("UPLOAD_PATH"); // "C:/Users/Alena/IdeaProjects/webApp/upload/";
         String urlResult = System.getenv("RESULTS"); // "C:/Users/Alena/IdeaProjects/webApp/uploadResult/";
         File folder = new File(url);

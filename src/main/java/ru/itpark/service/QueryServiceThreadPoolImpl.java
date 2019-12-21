@@ -37,7 +37,7 @@ public class QueryServiceThreadPoolImpl implements QueryService {
     }
 
     @Override
-    public void search(String query) {
+    public void search(Path path, String query) {
         String url = System.getenv("UPLOAD_PATH");
         String urlResult = System.getenv("RESULTS");
         String id = UUID.randomUUID().toString();
@@ -48,13 +48,21 @@ public class QueryServiceThreadPoolImpl implements QueryService {
         }
         executor.execute(() -> {
             boolean t;
-                    Path resultPath = Paths.get(urlResult + "\\"+id+".txt");
-                    try {
-                        //Path resultFile =
-                        Files.createFile(resultPath);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                  //  Path resultPath = Paths.get(urlResult + "\\"+id+".txt");
+            Path resultPath = null;
+            try {
+                System.out.println("path = " + path.resolve(id) + ".txt");
+                resultPath = Files.createFile(Paths.get(path.resolve(id)+".txt"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            //Path path = Paths.get(envPath).resolve(id);
+//                    try {
+//                        //Path resultFile =
+//                        Files.createFile(resultPath);
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
                     try {
                         repository.updateStatus(id,"INPROGRESS");
                     } catch (SQLException e) {
