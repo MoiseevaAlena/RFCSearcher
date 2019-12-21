@@ -1,4 +1,5 @@
 <%@ page import="java.util.List" %>
+<%@ page import="java.nio.file.Path" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
@@ -47,6 +48,11 @@
                 <button onclick="location.href='/results'" class="btn btn-primary mt-3">Перейти на страницу результатов</button>
             </div>
 
+            <h3>Список файлов, по которым осуществляется поиск:</h3>
+            <%for (Path path : (List<Path>) request.getAttribute("listFile")) {%>
+            <p><%=path%>
+            </p>
+            <%}%>
 
 
         </div>

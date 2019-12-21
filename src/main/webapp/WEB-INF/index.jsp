@@ -15,7 +15,7 @@
 
 
 <br>
-<div>
+<div align="center">
     <h2>Добро пожаловать на RFC Searcher!</h2>
         <button onclick="location.href='/search'" class="btn btn-primary mt-3">Начать поиск</button>
 </div>
